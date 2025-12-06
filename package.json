@@ -1,0 +1,25 @@
+{
+  "name": "rmtool",
+  "version": "1.0.0",
+  "description": "Comprehensive Risk Management Tool for IT Security",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "start-backend": "cd backend && npm start",
+    "start-frontend": "cd frontend && npm start",
+    "dev-backend": "cd backend && npm run dev",
+    "seed": "cd backend && npm run seed",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\""
+  },
+  "keywords": [
+    "risk-management",
+    "security",
+    "assessment",
+    "it-security"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
