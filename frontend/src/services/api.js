@@ -62,12 +62,50 @@ export const dashboardAPI = {
 };
 
 // Reports API
+// Reports API
 export const reportsAPI = {
-  downloadPDF: () => {
-    window.open(`${API_BASE_URL}/reports/pdf`, '_blank');
+  downloadPDF: async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/reports/pdf`, {
+        responseType: 'blob',
+      });
+
+      const blob = new Blob([response. data], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `risk_report_${Date.now()}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+      alert('Failed to download PDF report.');
+    }
   },
-  downloadExcel: () => {
-    window.open(`${API_BASE_URL}/reports/excel`, '_blank');
+
+  downloadExcel: async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/reports/excel`, {
+        responseType: 'blob',
+      });
+
+      const blob = new Blob([response.data], { 
+        type: 'application/vnd. openxmlformats-officedocument.spreadsheetml. sheet' 
+      });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `risk_export_${Date.now()}.xlsx`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading Excel:', error);
+      alert('Failed to download Excel file.');
+    }
   },
 };
 

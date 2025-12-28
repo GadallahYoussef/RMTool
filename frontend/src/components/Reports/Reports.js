@@ -2,12 +2,12 @@ import React from 'react';
 import { reportsAPI } from '../../services/api';
 
 const Reports = () => {
-  const handleDownloadPDF = () => {
-    reportsAPI.downloadPDF();
+  const handleDownloadPDF = async () => {
+    await reportsAPI.downloadPDF();  // Waits for Promise to complete  
   };
 
-  const handleDownloadExcel = () => {
-    reportsAPI.downloadExcel();
+  const handleDownloadExcel = async () => {
+    await reportsAPI.downloadExcel();
   };
 
   return (
